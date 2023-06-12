@@ -9,6 +9,6 @@ Controle de um sistema de cobranças onde cada cobranca deve estar vinculada a u
 
 3- Camada de serviço - Regra de negócios da Aplicação - Conecta o repositorio com a camada de apresentação dos dados. 
 
-4- Camada de Apresentação - 
+4- Camada de Apresentação - Presentation - Interação com o Usuário.
 
 1.1 Cria a pasta dominio e dentro dela, as Classes Clientes e Cobrancas.

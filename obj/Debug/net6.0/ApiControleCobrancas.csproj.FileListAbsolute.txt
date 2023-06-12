@@ -1,0 +1,15 @@
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\bin\Debug\net6.0\ApiControleCobrancas.exe
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\bin\Debug\net6.0\ApiControleCobrancas.deps.json
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\bin\Debug\net6.0\ApiControleCobrancas.runtimeconfig.json
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\bin\Debug\net6.0\ApiControleCobrancas.dll
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\bin\Debug\net6.0\ApiControleCobrancas.pdb
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\obj\Debug\net6.0\ApiControleCobrancas.csproj.AssemblyReference.cache
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\obj\Debug\net6.0\ApiControleCobrancas.GeneratedMSBuildEditorConfig.editorconfig
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\obj\Debug\net6.0\ApiControleCobrancas.AssemblyInfoInputs.cache
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\obj\Debug\net6.0\ApiControleCobrancas.AssemblyInfo.cs
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\obj\Debug\net6.0\ApiControleCobrancas.csproj.CoreCompileInputs.cache
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\obj\Debug\net6.0\ApiControleCobrancas.dll
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\obj\Debug\net6.0\refint\ApiControleCobrancas.dll
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\obj\Debug\net6.0\ApiControleCobrancas.pdb
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\obj\Debug\net6.0\ApiControleCobrancas.genruntimeconfig.cache
+C:\c#\API.Controle.Cobrancas\ApiControleCobrancas\obj\Debug\net6.0\ref\ApiControleCobrancas.dll

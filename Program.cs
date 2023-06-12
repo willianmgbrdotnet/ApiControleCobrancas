@@ -1,2 +1,14 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using ApiControleCobrancas.Apresentacao4Camada;
+
+namespace ApiControleCobrancas
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ClientesCobrancasPresentation presentation = new ClientesCobrancasPresentation();
+            presentation.Menu();
+            
+        }
+    }
+}

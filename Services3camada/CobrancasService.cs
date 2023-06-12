@@ -6,7 +6,7 @@ using ApiControleCobrancas.Data2camada;
 
 namespace ApiControleCobrancas.Services3camada
 {
-    public class CobrancasServices
+    public class CobrancasService
     {
         CobrancasRepository cobrancasRepository = new CobrancasRepository();
 

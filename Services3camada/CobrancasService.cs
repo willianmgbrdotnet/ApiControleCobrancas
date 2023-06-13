@@ -8,6 +8,7 @@ namespace ApiControleCobrancas.Services3camada
 {
     public class CobrancasService
     {
+        //instanciando a Segunda camada
         CobrancasRepository cobrancasRepository = new CobrancasRepository();
 
         

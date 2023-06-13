@@ -11,6 +11,8 @@ Controle de um sistema de cobranças onde cada cobranca deve estar vinculada a u
 
 4- Camada de Apresentação - Presentation - Interação com o Usuário.
 
+# Projeto Comentado para demonstrar os conceitos da Programação Orientada a Objetos.
+
 # Resumo
 
 Camada de Apresentação depende da Camada de Serviço. 

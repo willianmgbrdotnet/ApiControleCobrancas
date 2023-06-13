@@ -14,6 +14,7 @@ namespace ApiControleCobrancas.Services3camada
 {
     public class ClientesService
     {
+        //instanciando a Segunda camada
         ClientesRepository clientesRepository = new ClientesRepository();
 
         public string AddCliente(string name, string telefone)
@@ -24,6 +25,22 @@ namespace ApiControleCobrancas.Services3camada
             clientesRepository.Save(new Clientes(clienteId, name, telefone));
             return("Cliente cadastrado com sucesso!");            
         }
+        
+        //verificar pelo Id se o cliente existe
+        //Este método é necessário para Editar na Quarta Camada
+        public bool VerificarPeloId(int clienteId)
+        {
+            var clienteVerificado = clientesRepository.GetById(clienteId);
+            return clienteVerificado != null;
+            //Exception será informada na Presentation
+        }
+
+        //Mostrar Dados do Cliente correspondente ao ID
+        //Método necessário para Editar na Quarta Camada
+        public void ShowClienteDoId(int clienteId)
+        {
+            Console.WriteLine($"O cliente do id informado é: {clientesRepository.GetById(clienteId).Nome} Tel {clientesRepository.GetById(clienteId).Telefone}");
+        }
 
         public string ShowClientes()
         {
@@ -33,7 +50,9 @@ namespace ApiControleCobrancas.Services3camada
             var quantidadeDeClientes = clientesList.Count;
 
             if(quantidadeDeClientes == 0)
+            {
                 return builder.Append("Lista vazia").ToString();
+            }
             else
             {
                 foreach (var cliente in clientesList)
@@ -45,6 +64,31 @@ namespace ApiControleCobrancas.Services3camada
                 }
                 return builder.ToString();
             }
+        }
+
+        //Assim como no Repositório, esse método também retornará um "bool"
+        public bool EditarCliente(int clienteId, string clienteName, string clienteTelefone)
+        {
+            var alterarCliente = clientesRepository.GetById(clienteId);
+
+            if(alterarCliente == null)
+            {
+                Console.WriteLine($"O cliente com o ID {clienteId} nao foi encontrado");
+                return false;                
+            }
+            else
+            {
+                alterarCliente.Nome = clienteName;
+                alterarCliente.Telefone = clienteTelefone;
+
+                Console.WriteLine($"Cliente alterado com sucesso!");            
+                return true;
+            }            
+        }
+
+        public void ExcluirCliente(int clienteId)
+        {
+            clientesRepository.Delete(clienteId);
         }
     }
 }

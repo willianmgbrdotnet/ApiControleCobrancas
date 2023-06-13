@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApiControleCobrancas.Dominio1camada;
+using ApiControleCobrancas.Data2camada;
 using ApiControleCobrancas.Services3camada;
 
 namespace ApiControleCobrancas.Apresentacao4Camada
@@ -11,6 +13,8 @@ namespace ApiControleCobrancas.Apresentacao4Camada
         //instanciando a Terceira camada
         ClientesService clientesService = new ClientesService();
         CobrancasService cobrancasService = new CobrancasService();
+        CobrancasRepository cobrancasRepository = new CobrancasRepository();
+        
 
         //Através desse menu, o usuario vai interagir com a Terceira camada.
         public void Menu()
@@ -27,6 +31,8 @@ namespace ApiControleCobrancas.Apresentacao4Camada
                 System.Console.WriteLine();
                 Console.WriteLine($"11 (onze) para registrar uma nova Cobrança");
                 Console.WriteLine($"22 para mostrar Todas as Cobranças");
+                Console.WriteLine($"55 para mostrar as Cobranças do cliente (id do cliente)");
+                
                 System.Console.WriteLine();                
                 Console.WriteLine($"Aperte o 9 para limpar a Telar");                
                 Console.WriteLine($"0 para Sair");
@@ -38,11 +44,59 @@ namespace ApiControleCobrancas.Apresentacao4Camada
                 switch(opcaoUsuario)
                 {
                     case "11":
-                        
+                        try
+                        {
+                            //O Id da nova cobrança será auto gerado
+                            var idDaCobranca = cobrancasRepository.ListSize() +1;
 
+                            Console.WriteLine($"Qual será o prazo?  Digite a quantidade de dias até o Dia do vencimento.");
+                            var prazodias = double.Parse(Console.ReadLine());
+                            Console.WriteLine($"Qual o valor da Cobrança?  Use o . (ponto) se tiver centavos.");            
+                            var parcelaOuPreço = double.Parse(Console.ReadLine());                            
+                            //verifica se o cliente existe
+                            try
+                            {
+                                Console.WriteLine("Qual o id do cliente devedor?");
+                                int idDoClienteDevedor = int.Parse(Console.ReadLine());
+                                var clienteExiste = clientesService.VerificarPeloId(idDoClienteDevedor);
+                                clientesService.ShowClienteDoId(idDoClienteDevedor);
+                                var clienteDevedor = clientesService.ObterPeloId(idDoClienteDevedor);
+
+                                var cobranca = new Cobrancas(idDaCobranca, DateTime.Now.AddDays(prazodias), parcelaOuPreço, clienteDevedor);
+                                //Método para adicionar a nova cobrança. NÃO Salva sem este método.
+                                cobrancasService.NovaCobranca(cobranca);
+                                Console.WriteLine($"Cobrança Registrada"); 
+                            }
+                            catch (System.Exception ex)
+                            {
+                                Console.WriteLine($"Não existe cliente com o id que você digitou");
+                                Menu();
+                            }                           
+                            
+                        }
+                        catch (System.Exception ex)
+                        {
+                            Console.WriteLine($"Valor inválido");
+                            Menu();                             
+                        }
                     break;
-                        
 
+                    case "22":
+                        Console.WriteLine(cobrancasService.MostrarTodasCobrancasGeral());
+                    break;
+
+                    case "55":
+                        try
+                        {
+                        Console.WriteLine($"Digite o id do cliente devedor");
+                        var idCliente = int.Parse(Console.ReadLine());
+                        Console.WriteLine(cobrancasService.MostrarDividasClienteUnico(idCliente));
+                        }
+                        catch (System.Exception ex)
+                        {
+                             Console.WriteLine($"Valor inválido");                             
+                        }
+                    break;                        
 
                     case "9":
                         Console.Clear();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using ApiControleCobrancas.Data2camada;
 using ApiControleCobrancas.Dominio1camada;
@@ -15,13 +16,7 @@ namespace ApiControleCobrancas.Services3camada
         //Seguindo o mesmo padrão da classe ClienteServices
         public void NovaCobranca(Cobrancas cobranca)
         {
-            //O Id da nova cobrança será auto gerado
-            var idDaCobranca = cobrancasRepository.ListSize() +1;
-            Console.WriteLine($"Qual será o prazo?  Digite a quantidade de dias até o Dia do vencimento.");
-            var prazodias = double.Parse(Console.ReadLine());
-
-            cobrancasRepository.Save(new Cobrancas(idDaCobranca, DateTime.Now.AddDays(prazodias), cobranca.ValorCobranca, cobranca.Clientes));        
-            Console.WriteLine($"Cobrança Registrada");                    
+            cobrancasRepository.Save(cobranca);
         }
 
         public void BuscarCobrancaPeloId(int cobrancaId)
@@ -29,26 +24,64 @@ namespace ApiControleCobrancas.Services3camada
             cobrancasRepository.GetById(cobrancaId);
         }
 
-        public void PagarCobranca(Cobrancas cobranca)
+        public void PagarCobrancaDarBaixa(Cobrancas cobranca)
         {
             cobrancasRepository.Update(cobranca);
         }
 
-        public void MostrarTodasCobrancasGeral()
+        public string MostrarTodasCobrancasGeral()
         {
-            Console.WriteLine($"Total de Cobranças de todos os clientes");            
-            cobrancasRepository.GetAll();
+            var builder = new StringBuilder();
+            //busca todos os clientes e armazena na variavel "clientesList"
+            var cobrancasLista = cobrancasRepository.GetAll();
+            var quantidadeDeClientes = cobrancasLista.Count;
+
+            if(quantidadeDeClientes == 0)
+            {
+                return builder.Append("Lista vazia").ToString();
+            }
+            else
+            {
+                foreach (var cobranca in cobrancasLista)
+                {
+                    //Cada item encontrado na lista será adicionado à super string "builder"
+                    //O StringBuilder pode manipular e apresentar as strings armazenadas na 
+                    //variável "builder" de diversas formas.                      
+                    builder.AppendLine("IdCobrança: " + cobranca.Id + " DataEmissao: " + cobranca.DataEmissao + " DataVencimento: " + cobranca.DataAvencer + " ValorCobrança " + cobranca.ValorCobranca + " Data que foi paga " + cobranca.DataPagamento + " Foi paga? " + cobranca.StatusPago);
+                }
+                return builder.ToString();
+            }
         }
+
 
         public void ContarQuantidadeCobrancasGeral()
         {
             cobrancasRepository.ListSize();
         }
 
-        public void MostrarDividasClienteUnico(int clienteId)
+        public string MostrarDividasClienteUnico(int clienteId)
         {
-            Console.WriteLine($"Cliente tem um total de {cobrancasRepository.GetAllCobrancasDoCliente(clienteId).Count()} cobranças em seu nome");
-            cobrancasRepository.GetAllCobrancasDoCliente(clienteId);            
+
+            var builder = new StringBuilder();
+            //busca todos os clientes e armazena na variavel "clientesList"
+            var dividasDoCliente = cobrancasRepository.GetAllCobrancasDoCliente(clienteId);
+            Console.WriteLine($"Cliente tem um total de {dividasDoCliente.Count()} cobranças em seu nome");
+
+            if(dividasDoCliente.Count == 0)
+            {
+                return builder.Append("Lista vazia").ToString();
+            }
+            else
+            {
+                foreach (var cobranca in dividasDoCliente)
+                {
+                    //Cada item encontrado na lista será adicionado à super string "builder"
+                    //O StringBuilder pode manipular e apresentar as strings armazenadas na 
+                    //variável "builder" de diversas formas.                      
+                    builder.AppendLine("IdCobrança: " + cobranca.Id + " DataEmissao: " + cobranca.DataEmissao + " DataVencimento: " + cobranca.DataAvencer + " ValorCobrança " + cobranca.ValorCobranca + " Data que foi paga " + cobranca.DataPagamento + " Foi paga? " + cobranca.StatusPago);
+                }
+                return builder.ToString();
+            }
         }
     }
 }

@@ -35,6 +35,13 @@ namespace ApiControleCobrancas.Services3camada
             //Exception será informada na Presentation
         }
 
+        //retorna o cliente correspondente ao id informado
+        public Clientes ObterPeloId(int clienteId)
+        {            
+            return clientesRepository.GetById(clienteId);
+            //Exception será informada na Presentation
+        }
+
         //Mostrar Dados do Cliente correspondente ao ID
         //Método necessário para Editar na Quarta Camada
         public void ShowClienteDoId(int clienteId)

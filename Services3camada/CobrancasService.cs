@@ -15,8 +15,13 @@ namespace ApiControleCobrancas.Services3camada
         //Seguindo o mesmo padrão da classe ClienteServices
         public void NovaCobranca(Cobrancas cobranca)
         {
-            cobrancasRepository.Save(cobranca);
-            Console.WriteLine($"Cobrança Registrada");            
+            //O Id da nova cobrança será auto gerado
+            var idDaCobranca = cobrancasRepository.ListSize() +1;
+            Console.WriteLine($"Qual será o prazo?  Digite a quantidade de dias até o Dia do vencimento.");
+            var prazodias = double.Parse(Console.ReadLine());
+
+            cobrancasRepository.Save(new Cobrancas(idDaCobranca, DateTime.Now.AddDays(prazodias), cobranca.ValorCobranca, cobranca.Clientes));        
+            Console.WriteLine($"Cobrança Registrada");                    
         }
 
         public void BuscarCobrancaPeloId(int cobrancaId)
@@ -32,7 +37,6 @@ namespace ApiControleCobrancas.Services3camada
         public void MostrarTodasCobrancasGeral()
         {
             Console.WriteLine($"Total de Cobranças de todos os clientes");            
-            cobrancasRepository.ListSize();            
             cobrancasRepository.GetAll();
         }
 

@@ -23,9 +23,11 @@ namespace ApiControleCobrancas.Apresentacao4Camada
                 Console.WriteLine($"Digite 2 para listar todos os clientes");
                 Console.WriteLine($"Digite 3 para editar um cliente");
                 Console.WriteLine($"Digite 4 para mostrar o cliente do id que você informar");
-                System.Console.WriteLine();
                 Console.WriteLine($"Digite 7 para Excluir o cliente desejado.");
-                
+                System.Console.WriteLine();
+                Console.WriteLine($"11 (onze) para registrar uma nova Cobrança");
+                Console.WriteLine($"22 para mostrar Todas as Cobranças");
+                System.Console.WriteLine();                
                 Console.WriteLine($"Aperte o 9 para limpar a Telar");                
                 Console.WriteLine($"0 para Sair");
                 Console.WriteLine();
@@ -35,6 +37,13 @@ namespace ApiControleCobrancas.Apresentacao4Camada
 
                 switch(opcaoUsuario)
                 {
+                    case "11":
+                        
+
+                    break;
+                        
+
+
                     case "9":
                         Console.Clear();
                     break;
